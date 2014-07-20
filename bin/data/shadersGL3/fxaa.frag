@@ -10,15 +10,17 @@ vec2 resolution;
 
 //varying vec2 vUv;
 
+//const float FXAA_REDUCE_MIN = 1.0/256.0;
 const float FXAA_REDUCE_MIN = 1.0/128.0;
-const float FXAA_REDUCE_MUL = 1.0/1024.0;
+//const float FXAA_REDUCE_MUL = 1.0/16.0;
+const float FXAA_REDUCE_MUL = 1.0/8.0;
 const float FXAA_SPAN_MAX = 8.0;
 
 void main() {
     
     //vec4 color = vec4(1.0,1.0,1.0,1.0);
     
-    resolution = vec2(1.f,1.f);
+    resolution = vec2(1.0,1.0);
     
     vec3 rgbNW = texture( tex0, ( texCoordVarying.xy + vec2( -1.0, -1.0 ) ) * resolution ).xyz;
     vec3 rgbNE = texture( tex0, ( texCoordVarying.xy + vec2( 1.0, -1.0 ) ) * resolution ).xyz;
@@ -70,41 +72,3 @@ void main() {
     }
     
 }
-
-/*
- #version 150
- 
- uniform sampler2DRect tex0;
- uniform float blurAmnt;
- 
- in vec2 texCoordVarying;
- out vec4 outputColor;
- 
- void main()
- {
- 
- vec4 color = vec4(1.0,1.0,1.0,1.0);
- 
- color += 1.0 * texture(tex0, texCoordVarying + vec2(blurAmnt * -4.0, 0.0));
- color += 2.0 * texture(tex0, texCoordVarying + vec2(blurAmnt * -3.0, 0.0));
- color += 3.0 * texture(tex0, texCoordVarying + vec2(blurAmnt * -2.0, 0.0));
- color += 4.0 * texture(tex0, texCoordVarying + vec2(blurAmnt * -1.0, 0.0));
- 
- color += 5.0 * texture(tex0, texCoordVarying + vec2(blurAmnt, 0));
- 
- color += 4.0 * texture(tex0, texCoordVarying + vec2(blurAmnt * 1.0, 0.0));
- color += 3.0 * texture(tex0, texCoordVarying + vec2(blurAmnt * 2.0, 0.0));
- color += 2.0 * texture(tex0, texCoordVarying + vec2(blurAmnt * 3.0, 0.0));
- color += 1.0 * texture(tex0, texCoordVarying + vec2(blurAmnt * 4.0, 0.0));
- 
- color /= 25.0;
- 
- outputColor = color;
- }
- */
-
-/*
-void main() {
-    outputColor = vec4(1.0,0.0,0.0,1.0);
-}
-*/

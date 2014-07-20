@@ -22,4 +22,10 @@ public:
     ofFbo myFbo;
     ofFbo myAAFbo;
     ofShader fxaa;
+    
+    ofShader topo;
+    ofPlanePrimitive landscape;
+    ofImage topoImg;
+    
+    int column;
 };
