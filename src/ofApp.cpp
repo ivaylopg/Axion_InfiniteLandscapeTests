@@ -69,8 +69,8 @@ void ofApp::update(){
     } else if (offSet > heights.size()-topoRes){
         offSet = heights.size()-topoRes;
     }
-    cout << offSet/topoImg.getWidth() << endl;
-    cout << heights.size() << endl;
+    //cout << offSet/topoImg.getWidth() << endl;
+    //cout << heights.size() << endl;
     
     unsigned char * pixels = topoImg.getPixels();
     for (int column = 0; column < topoImg.getWidth(); column++) {
