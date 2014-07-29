@@ -27,5 +27,6 @@ public:
     ofPlanePrimitive landscape;
     ofImage topoImg;
     
-    int column;
+    vector<float> heights;
+    int topoRes;
 };
