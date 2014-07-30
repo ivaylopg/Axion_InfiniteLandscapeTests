@@ -5,7 +5,7 @@ void ofApp::setup(){
     
     if(ofIsGLProgrammableRenderer()){
 		fxaa.load("shadersGL3/fxaa");
-        topo.load("shadersGL3/topo");
+        //topo.load("shadersGL3/topo");
 	}
     
     ofFbo::Settings settings;
@@ -44,23 +44,26 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    /*
+    //*
     myFbo.begin();                              // FXAA tests
+    ofClear(0, 0, 0,255);
     ofSetColor(ofColor::white);
     ofPushMatrix();
     ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
     ofSpherePrimitive(100.f, 3).getMesh().drawWireframe();
+    ofRotateZ(25);
     ofPopMatrix();
     myFbo.end();
 
     myAAFbo.begin();
+    ofClear(0, 0, 0,255);
     fxaa.begin();
     myFbo.draw(ofVec2f(0,0));
     fxaa.end();
     myAAFbo.end();
-    */
+    //*/
 
-    
+    /*
     //float offSet = ofMap(ofGetMouseX(), 0, ofGetWidth(), 0, topoImg.getWidth(),true) * topoImg.getHeight();
     //float offSet = 0;
     float offSet = ofGetMouseX() * topoImg.getHeight();
@@ -82,16 +85,19 @@ void ofApp::update(){
         }
         topoImg.update();
     }
+    //*/
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofBackground(0);
-    /*
+    ///*
     myFbo.draw(ofVec2f(0-ofGetWidth()/3,0));    // FXAA tests
     myAAFbo.draw(ofVec2f(0+ofGetWidth()/3,0));
-    */
+    //*/
     
+    
+    /*
     topoImg.getTextureReference().bind();
     
     topo.begin();
@@ -131,6 +137,8 @@ void ofApp::draw(){
     
     ofSetWindowTitle(ofToString(ofGetFrameRate(),2));
     ofDrawBitmapStringHighlight(ofToString(heights.size()), 20, ofGetHeight()-20);
+     
+    //*/
 }
 
 //--------------------------------------------------------------
