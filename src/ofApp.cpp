@@ -4,18 +4,8 @@
 void ofApp::setup(){
     
     if(ofIsGLProgrammableRenderer()){
-		fxaa.load("shadersGL3/fxaa");
         topo.load("shadersGL3/topo");
 	}
-    
-    ofFbo::Settings settings;
-    settings.numSamples = 0; // also try 8, if your GPU supports it
-    settings.useDepth = true;
-    settings.width = ofGetWidth();
-    settings.height = ofGetHeight();
-    
-    myFbo.allocate(settings);
-    myAAFbo.allocate(settings);
     
     topoImg.allocate(80, 60, OF_IMAGE_GRAYSCALE);
     topoRes = topoImg.getHeight() * topoImg.getWidth();
@@ -44,23 +34,6 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    /*
-    myFbo.begin();                              // FXAA tests
-    ofSetColor(ofColor::white);
-    ofPushMatrix();
-    ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
-    ofSpherePrimitive(100.f, 3).getMesh().drawWireframe();
-    ofPopMatrix();
-    myFbo.end();
-
-    myAAFbo.begin();
-    fxaa.begin();
-    myFbo.draw(ofVec2f(0,0));
-    fxaa.end();
-    myAAFbo.end();
-    */
-
-    
     //float offSet = ofMap(ofGetMouseX(), 0, ofGetWidth(), 0, topoImg.getWidth(),true) * topoImg.getHeight();
     //float offSet = 0;
     float offSet = ofGetMouseX() * topoImg.getHeight();
@@ -69,8 +42,8 @@ void ofApp::update(){
     } else if (offSet > heights.size()-topoRes){
         offSet = heights.size()-topoRes;
     }
-    cout << offSet/topoImg.getWidth() << endl;
-    cout << heights.size() << endl;
+    //cout << offSet/topoImg.getWidth() << endl;
+    //cout << heights.size() << endl;
     
     unsigned char * pixels = topoImg.getPixels();
     for (int column = 0; column < topoImg.getWidth(); column++) {
@@ -87,10 +60,6 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofBackground(0);
-    /*
-    myFbo.draw(ofVec2f(0-ofGetWidth()/3,0));    // FXAA tests
-    myAAFbo.draw(ofVec2f(0+ofGetWidth()/3,0));
-    */
     
     topoImg.getTextureReference().bind();
     

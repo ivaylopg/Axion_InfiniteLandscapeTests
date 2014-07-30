@@ -19,10 +19,6 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    ofFbo myFbo;
-    ofFbo myAAFbo;
-    ofShader fxaa;
-    
     ofShader topo;
     ofPlanePrimitive landscape;
     ofImage topoImg;
